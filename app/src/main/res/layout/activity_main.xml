@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sensorValues"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/testButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/distanceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            app:layout_constraintBottom_toTopOf="@+id/lightLabel"
+            app:layout_constraintStart_toStartOf="@+id/lightLabel"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/distanceNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 cm"
+            app:layout_constraintStart_toEndOf="@+id/distanceLabel"
+            app:layout_constraintStart_toStartOf="@+id/lightNumbers"
+            app:layout_constraintTop_toTopOf="@+id/distanceLabel" />
+
+        <TextView
+            android:id="@+id/lightLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Light"
+            app:layout_constraintBottom_toTopOf="@+id/lineLabel"
+            app:layout_constraintStart_toStartOf="@+id/lineLabel"
+            app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
+
+        <TextView
+            android:id="@+id/lightNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(0, 0)"
+            app:layout_constraintStart_toEndOf="@+id/lightLabel"
+            app:layout_constraintStart_toStartOf="@+id/lineNumbers"
+            app:layout_constraintTop_toTopOf="@+id/lightLabel" />
+
+        <TextView
+            android:id="@+id/lineLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Line"
+            app:layout_constraintBottom_toTopOf="@+id/encoderLabel"
+            app:layout_constraintStart_toStartOf="@+id/encoderLabel"
+            app:layout_constraintTop_toBottomOf="@+id/lightLabel" />
+
+        <TextView
+            android:id="@+id/lineNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(0, 0)"
+            app:layout_constraintStart_toEndOf="@+id/lineLabel"
+            app:layout_constraintStart_toStartOf="@+id/encoderNumbers"
+            app:layout_constraintTop_toTopOf="@+id/lineLabel" />
+
+        <TextView
+            android:id="@+id/encoderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Encoder"
+            app:layout_constraintBottom_toTopOf="@+id/accelerationLabel"
+            app:layout_constraintStart_toStartOf="@+id/accelerationLabel"
+            app:layout_constraintTop_toBottomOf="@+id/lineLabel" />
+
+        <TextView
+            android:id="@+id/encoderNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(0, 0)"
+            app:layout_constraintStart_toEndOf="@+id/encoderLabel"
+            app:layout_constraintStart_toStartOf="@+id/accelerationNumbers"
+            app:layout_constraintTop_toTopOf="@+id/encoderLabel" />
+
+        <TextView
+            android:id="@+id/accelerationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acceleration"
+            app:layout_constraintBottom_toTopOf="@+id/magnetometerLabel"
+            app:layout_constraintStart_toStartOf="@+id/magnetometerLabel"
+            app:layout_constraintTop_toBottomOf="@+id/encoderLabel" />
+
+        <TextView
+            android:id="@+id/accelerationNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(0, 0, 0)"
+            app:layout_constraintStart_toEndOf="@+id/accelerationLabel"
+            app:layout_constraintStart_toStartOf="@+id/magnetometerNumbers"
+            app:layout_constraintTop_toTopOf="@+id/accelerationLabel" />
+
+        <TextView
+            android:id="@+id/magnetometerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Magnetometer"
+            app:layout_constraintBottom_toTopOf="@+id/compassLabel"
+            app:layout_constraintStart_toStartOf="@+id/compassLabel"
+            app:layout_constraintTop_toBottomOf="@+id/accelerationLabel" />
+
+        <TextView
+            android:id="@+id/magnetometerNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(0, 0, 0)"
+            app:layout_constraintStart_toEndOf="@+id/magnetometerLabel"
+            app:layout_constraintStart_toStartOf="@+id/compassNumber"
+            app:layout_constraintTop_toTopOf="@+id/magnetometerLabel" />
+
+        <TextView
+            android:id="@+id/compassLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compass"
+            app:layout_constraintBottom_toTopOf="@+id/buttonLabel"
+            app:layout_constraintStart_toStartOf="@+id/buttonLabel"
+            app:layout_constraintTop_toBottomOf="@+id/magnetometerLabel" />
+
+        <TextView
+            android:id="@+id/compassNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 °"
+            app:layout_constraintStart_toEndOf="@+id/compassLabel"
+            app:layout_constraintStart_toStartOf="@+id/buttonValues"
+            app:layout_constraintTop_toTopOf="@+id/compassLabel" />
+
+        <TextView
+            android:id="@+id/buttonLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buttons"
+            app:layout_constraintBottom_toTopOf="@+id/batteryLabel"
+            app:layout_constraintStart_toStartOf="@+id/batteryLabel"
+            app:layout_constraintTop_toBottomOf="@+id/compassLabel" />
+
+        <TextView
+            android:id="@+id/buttonValues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(false, false, false)"
+            app:layout_constraintStart_toEndOf="@+id/buttonLabel"
+            app:layout_constraintStart_toStartOf="@+id/batteryNumber"
+            app:layout_constraintTop_toTopOf="@+id/buttonLabel" />
+
+        <TextView
+            android:id="@+id/batteryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Battery"
+            app:layout_constraintBottom_toTopOf="@+id/movementLabel"
+            app:layout_constraintStart_toStartOf="@+id/movementLabel"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLabel" />
+
+        <TextView
+            android:id="@+id/batteryNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 V"
+            app:layout_constraintStart_toEndOf="@+id/batteryLabel"
+            app:layout_constraintStart_toStartOf="@+id/movementValue"
+            app:layout_constraintTop_toTopOf="@+id/batteryLabel" />
+
+        <TextView
+            android:id="@+id/movementLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movement Flag"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/movementValue"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/batteryLabel" />
+
+        <TextView
+            android:id="@+id/movementValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(false, false, false)"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/movementLabel"
+            app:layout_constraintTop_toTopOf="@+id/movementLabel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/testButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="testButtonClicked"
+        android:text="TEST"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sensorValues" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

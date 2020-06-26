@@ -3,9 +3,11 @@ package com.birdbraintech.android.finchbasicapp
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
+
 
 class MainActivity : AppCompatActivity(), Finch.FinchListener {
 
@@ -19,6 +21,61 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
 
         /* Make this the activity that is receiving Finch data */
         finch?.setFinchListener(this)
+
+        /* Set up the seek bar. */
+        val seekBar: SeekBar = findViewById(R.id.seekBar)
+        seekBar?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+
+            }
+
+            override fun onStartTrackingTouch(seek: SeekBar) {
+                // write custom code for progress is started
+            }
+
+            override fun onStopTrackingTouch(seek: SeekBar) {
+                // write custom code for progress is stopped
+                when (seek.progress) {
+                    in 0..12 -> {
+                        finch?.setBeak(100,100,100)
+                        finch?.setTail("all",100,100,100)
+                    }
+                    in 13..24 -> {
+                        finch?.setBeak(100,100,0)
+                        finch?.setTail("all",100,100,0)
+                    }
+                    in 25..36 -> {
+                        finch?.setBeak(0,100,100)
+                        finch?.setTail("all",0,100,100)
+                    }
+                    in 37..48 -> {
+                        finch?.setBeak(0,100,0)
+                        finch?.setTail("all",0,100,0)
+                    }
+                    in 49..60 -> {
+                        finch?.setBeak(100,0,100)
+                        finch?.setTail("all",100,0,100)
+                    }
+                    in 61..72 -> {
+                        finch?.setBeak(100,0,0)
+                        finch?.setTail("all",100,0,0)
+                    }
+                    in 73..84 -> {
+                        finch?.setBeak(0,0,100)
+                        finch?.setTail("all",0,0,100)
+                    }
+                    else -> {
+                        finch?.setBeak(0,0,0)
+                        finch?.setTail("all",0,0,0)
+                    }
+                }
+            }
+        })
+
+        seekBar.progress = 100
+
     }
 
     /* This Bluetooth does not disconnect automatically, so I want to disconnect it if this activity stops (since there are no
@@ -29,48 +86,20 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
         finch?.disconnect()
     }
 
+    fun upButtonClicked(view: View) {
+        finch?.setMove("F",20.0,50)
+    }
 
-    var toggle = false
-    fun testButtonClicked(view: View) {
-        if (toggle) {
-            finch?.resetEncoders()
-            finch?.stopAll()
-        } else {
-            finch?.setDisplay(
-                arrayOf(
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0
-                )
-            )
-            finch?.setTurn("R", 90.0, 50)
-       finch?.setBeak(Random.nextInt(0,100),Random.nextInt(0,100),Random.nextInt(0,100))
-        }
-        toggle = !toggle
-//        finch?.setTail(Random.nextInt(1,4),Random.nextInt(0,100),Random.nextInt(0,100),Random.nextInt(0,100))
-//        finch?.playNote(60,1.0)
+    fun downButtonClicked(view: View) {
+        finch?.setMove("B",20.0,50)
+    }
+
+    fun leftButtonClicked(view: View) {
+        finch?.setTurn("L",90.0,50)
+    }
+
+    fun rightButtonClicked(view: View) {
+        finch?.setTurn("R",90.0,50)
     }
 
     override fun onConnected() {
@@ -91,22 +120,6 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
 
             this.lineNumbers.text = "(" + finch?.inputState?.leftLine.toString() + ", " +
                     finch?.inputState?.rightLine.toString() + ")"
-            this.encoderNumbers.text = "(" + finch?.inputState?.leftEncoder.toString() + ", " +
-                    finch?.inputState?.rightEncoder.toString() + ")"
-            this.accelerationNumbers.text =
-                "(" + finch?.inputState?.acceleration?.get(0).toString() + ", " +
-                        finch?.inputState?.acceleration?.get(1).toString() + ", " +
-                        finch?.inputState?.acceleration?.get(2).toString() + ")"
-            this.magnetometerNumbers.text =
-                "(" + finch?.inputState?.magnetometer?.get(0).toString() + ", " +
-                        finch?.inputState?.magnetometer?.get(1).toString() + ", " +
-                        finch?.inputState?.magnetometer?.get(2).toString() + ")"
-            this.compassNumber.text = finch?.inputState?.compass?.toString() + "°"
-            this.buttonValues.text = "(" + finch?.inputState?.buttonA.toString() + ", " +
-                    finch?.inputState?.buttonB.toString() + ", " +
-                    finch?.inputState?.shake.toString() + ")"
-            this.batteryNumber.text = finch?.inputState?.batteryVoltage.toString() + " V"
-            this.movementValue.text = finch?.inputState?.movementFlag.toString()
         }))
 
     }

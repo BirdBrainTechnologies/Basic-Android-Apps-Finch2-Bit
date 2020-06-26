@@ -8,7 +8,7 @@ In the MainActivity, it is VERY IMPORTANT that you declare the Finch object and 
 
 The MainActivity contains the variables finch. The finch variable has public functions that you can use to control the lights, motors, and buzzers of the Finch. Those public functions are listed below. In addition, the finch variable includes sensorState, which you can use to access all of the values of the Finch sensors. For example, finch?.sensorState?.distance will give you the value of the distance sensor. SensorState is a class that contains the sensor information for the Finch. The variables inside that class that contain the Finch data are described below.
 
-The MainActivity screen demonstrates how you can use buttons and sliders to control the Finch outputs. It also displays the values of the Finch sensors on the screen.
+The MainActivity screen lets you "program" the Finch by tapping a series of buttons. When you press the play button, the Finch will make one movement for every button that you pressed. For example, if you press up, right, up, play, then the Finch will move forward, turn right, and then move forward again. This code demonstrates how to wait until the Finch has completed each movement before sending the next Bluetooth command.
 
 Public Finch Functions:
 

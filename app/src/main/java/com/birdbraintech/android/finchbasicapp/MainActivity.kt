@@ -1,17 +1,19 @@
 package com.birdbraintech.android.finchbasicapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
+import com.birdbraintech.android.finchbasicapp.Finch.Finch
+import com.birdbraintech.android.finchbasicapp.Finch.FinchApplication
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.random.Random
 
-
+/* This controls the main screen of the app that allows you to control the lights and motors of
+the Finch. It also displays the Finch sensor values and the connection status. */
 class MainActivity : AppCompatActivity(), Finch.FinchListener {
 
-    /* You must put this in every activity that uses the Finch. Just trust me. */
+    /* In every activity that uses the Finch, you should define a Finch variable that is equal to
+    * the Finch variable we declared in FinchApplication. */
     val finch: Finch?
         get() = (application as FinchApplication).finch
 
@@ -27,16 +29,17 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
         seekBar?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
-                // write custom code for progress is changed
+                // write custom code for progress is changed on seekbar
 
             }
 
             override fun onStartTrackingTouch(seek: SeekBar) {
-                // write custom code for progress is started
+                // write custom code for progress is started on seekbar
             }
 
             override fun onStopTrackingTouch(seek: SeekBar) {
-                // write custom code for progress is stopped
+                // When progress is stopped on the seekbar, we want to set the lights of the
+                // Finch beak and tail based on its value
                 when (seek.progress) {
                     in 0..12 -> {
                         finch?.setBeak(100,100,100)
@@ -86,6 +89,7 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
         finch?.disconnect()
     }
 
+    /* The next four functions are called when the user taps the buttons to make the Finch move. */
     fun upButtonClicked(view: View) {
         finch?.setMove("F",20.0,50)
     }
@@ -111,7 +115,10 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
         /* This is where you would handle anything you want to do if the Finch disconnects. */
     }
 
+    /* This is the function that is called when the Finch has new sensor data. That data is in
+    the inputState variable. */
     override fun onData() {
+        /* Set the values of the TextViews for the sensors. */
         this.runOnUiThread(java.lang.Runnable({
             this.distanceNumber.text = finch?.inputState?.distance.toString() + " cm"
             val lightSensors = finch?.correctLightSensorValues()

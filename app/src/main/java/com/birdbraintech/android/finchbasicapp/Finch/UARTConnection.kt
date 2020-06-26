@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.finchbasicapp.Finch
 
 import android.bluetooth.*
 import android.content.Context
@@ -11,8 +11,6 @@ import java.util.concurrent.TimeUnit
 /**
  * Represents a UART connection established via Bluetooth Low Energy. Communicates using the RX and
  * TX lines.
- *
- * @author Terence Sun (tsun1215)
  */
 class UARTConnection @JvmOverloads constructor(context: Context, device: BluetoothDevice) : BluetoothGattCallback() {
 
@@ -111,8 +109,8 @@ class UARTConnection @JvmOverloads constructor(context: Context, device: Bluetoo
     }
 
 
+    /* This function is called when a Bluetooth device is connected or disconnected. */
     override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
-
         connectionState = newState
         if (status == BluetoothGatt.GATT_SUCCESS) {
             if (newState == BluetoothGatt.STATE_CONNECTED) {
@@ -129,7 +127,12 @@ class UARTConnection @JvmOverloads constructor(context: Context, device: Bluetoo
         if (status == BluetoothGatt.GATT_SUCCESS) {
             val tx = gatt.getService(uartUUID).getCharacteristic(txUUID)
             val rx = gatt.getService(uartUUID).getCharacteristic(rxUUID)
-            val connection = BTGattConnection(gatt, tx, rx)
+            val connection =
+                BTGattConnection(
+                    gatt,
+                    tx,
+                    rx
+                )
             this.connection = connection
             // Notify that the setup process is completed
             gatt.requestConnectionPriority(BluetoothGatt.CONNECTION_PRIORITY_BALANCED)

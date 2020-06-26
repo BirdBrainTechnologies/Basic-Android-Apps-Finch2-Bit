@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.finchbasicapp.Scan
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.birdbraintech.android.finchbasicapp.R
 
 /**
  * A fragment representing a list of Items.
@@ -64,7 +65,11 @@ class ScanItemFragment : Fragment() {
             } else {
                 GridLayoutManager(context, columnCount)
             }
-            view.adapter = ScanViewAdapter(getContext()!!.applicationContext, listener)
+            view.adapter =
+                ScanViewAdapter(
+                    getContext()!!.applicationContext,
+                    listener
+                )
         }
         return view
     }
@@ -91,7 +96,8 @@ class ScanItemFragment : Fragment() {
 
         // TODO: Customize parameter initialization
         fun newInstance(columnCount: Int): ScanItemFragment {
-            val fragment = ScanItemFragment()
+            val fragment =
+                ScanItemFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)
             fragment.arguments = args

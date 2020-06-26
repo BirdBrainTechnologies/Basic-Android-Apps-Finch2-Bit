@@ -3,11 +3,9 @@ package com.birdbraintech.android.finchbeebot
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.birdbraintech.android.finchbeebot.Finch.Finch
 import com.birdbraintech.android.finchbeebot.Finch.FinchApplication
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 /* This app lets users push arrow buttons on the screen of the phone or tablet to write a
@@ -121,10 +119,10 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
                         }
                     } else if (movementSent && !movementStarted) {
                         /* Once we have sent a movement, there is a delay before the Finch receives that command and starts to move. We know the Finch has started moving when the movementFlag is ture. Keep resetting movementStarted until the movementFlag is true. */
-                        movementStarted = (finch?.inputState?.movementFlag == true)
+                        movementStarted = (finch?.sensorState?.movementFlag == true)
                     } else if (movementStarted && !movementFinished) {
                         /* Once a movement has started, then we have to wait for the movementFlag to turn back to false to indicate that it has finished. Keep resetting movementFinished until it is true. */
-                        movementFinished = (finch?.inputState?.movementFlag == false)
+                        movementFinished = (finch?.sensorState?.movementFlag == false)
                     } else if (movementFinished) {     // Current movement has finished
                         // Remove the completed movement from the array and set all our flags back to false.
                         Log.d("Finch",movements.size.toString())

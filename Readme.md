@@ -6,7 +6,7 @@ The app opens with a screen that enables you to choose your Finch and connect to
 
 In the MainActivity, it is VERY IMPORTANT that you declare the Finch object and set the activity to be a FinchListener. You will need to do this any time you move to a new activity that uses the Finch.
 
-The MainActivity contains the variables finch. The finchVariable includes sensorState, which you can use to access all of the values of the Finch sensors. For example, finch?.sensorState?.distance will give you the value of the distance sensor. The finch variable has public functions that you can use to control the lights, motors, and buzzers of the Finch. Those public functions are listed below. finchSensorState is a structure that contains the sensor information for the Finch. the variables inside that structure that contain the Finch data are described below.
+The MainActivity contains the variables finch. The finch variable has public functions that you can use to control the lights, motors, and buzzers of the Finch. Those public functions are listed below. In addition, the finch variable includes sensorState, which you can use to access all of the values of the Finch sensors. For example, finch?.sensorState?.distance will give you the value of the distance sensor. SensorState is a class that contains the sensor information for the Finch. The variables inside that class that contain the Finch data are described below.
 
 The MainActivity screen demonstrates how you can use buttons and sliders to control the Finch outputs. It also displays the values of the Finch sensors on the screen.
 
@@ -98,7 +98,7 @@ Description: This function sets the right and left encoder values to 0.
 
 Example: finch.resetEncoders()
 
-Variables that you can access within sensorState:
+Variables that you can access within the SensorState class (the finch?.sensorState variable):
 
 timestamp: Date - time of the sensor reading
 

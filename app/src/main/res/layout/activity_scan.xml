@@ -14,7 +14,7 @@
 
         <fragment
             android:id="@+id/fragmentScanItem"
-            android:name="com.birdbraintech.android.finchbasicapp.Scan.ScanItemFragment"
+            android:name="com.birdbraintech.android.finchbeebot.Scan.ScanItemFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"

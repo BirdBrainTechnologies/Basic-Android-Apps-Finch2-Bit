@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp.Finch
+package com.birdbraintech.android.finchbeebot.Finch
 import android.util.Log
 import java.util.*
 import kotlin.math.abs

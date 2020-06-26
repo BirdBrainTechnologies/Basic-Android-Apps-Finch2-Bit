@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp.Scan
+package com.birdbraintech.android.finchbeebot.Scan
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.birdbraintech.android.finchbasicapp.R
+import com.birdbraintech.android.finchbeebot.R
 
 /**
  * A fragment representing a list of Items.

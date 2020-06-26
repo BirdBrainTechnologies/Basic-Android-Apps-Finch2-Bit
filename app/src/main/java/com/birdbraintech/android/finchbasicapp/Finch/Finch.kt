@@ -217,7 +217,7 @@ class Finch(var finchConnection: UARTConnection): UARTConnection.DataListener, U
     /* This is the sensor data as it comes from the Finch in a 20-byte packet. It has to be
     decoded to provide meaningful information to the user. */
     private var rawInputState: RawInputState? = null
-    var inputState: SensorState? = null
+    var sensorState: SensorState? = null
         get(): SensorState? {
             return if (rawInputState == null) null else SensorState(rawInputState!!)
         }
@@ -669,10 +669,10 @@ class Finch(var finchConnection: UARTConnection): UARTConnection.DataListener, U
         val B = (beak[2]).toDouble()
         var lightLeftCorrected: Int? = null
         var lightRightCorrected: Int? = null
-        val currentInputState = inputState
-        if (inputState != null) {
-            var lightLeft = (inputState!!.leftLight).toDouble()
-            var lightRight = (inputState!!.rightLight).toDouble()
+        val currentInputState = sensorState
+        if (sensorState != null) {
+            var lightLeft = (sensorState!!.leftLight).toDouble()
+            var lightRight = (sensorState!!.rightLight).toDouble()
 
             lightLeft -= 1.06871493e-02*R +  1.94526614e-02*G +  6.12409825e-02*B +  4.01343475e-04*R*G + 4.25761981e-04*R*B +  6.46091068e-04*G*B - 4.41056971e-06*R*G*B
             lightRight -= 6.40473070e-03*R +  1.41015162e-02*G +  5.05547817e-02*B +  3.98301391e-04*R*G +  4.41091223e-04*R*B +  6.40756862e-04*G*B + -4.76971242e-06*R*G*B

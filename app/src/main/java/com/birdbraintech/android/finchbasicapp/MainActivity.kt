@@ -120,13 +120,13 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
     override fun onData() {
         /* Set the values of the TextViews for the sensors. */
         this.runOnUiThread(java.lang.Runnable({
-            this.distanceNumber.text = finch?.inputState?.distance.toString() + " cm"
+            this.distanceNumber.text = finch?.sensorState?.distance.toString() + " cm"
             val lightSensors = finch?.correctLightSensorValues()
             this.lightNumbers.text = "(" + lightSensors?.get(0).toString() + ", " +
                     lightSensors?.get(1).toString() + ")"
 
-            this.lineNumbers.text = "(" + finch?.inputState?.leftLine.toString() + ", " +
-                    finch?.inputState?.rightLine.toString() + ")"
+            this.lineNumbers.text = "(" + finch?.sensorState?.leftLine.toString() + ", " +
+                    finch?.sensorState?.rightLine.toString() + ")"
         }))
 
     }

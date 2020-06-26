@@ -8,7 +8,7 @@ In the MainActivity, it is VERY IMPORTANT that you declare the Finch object and 
 
 The MainActivity contains the variables finch. The finch variable has public functions that you can use to control the lights, motors, and buzzers of the Finch. Those public functions are listed below. In addition, the finch variable includes sensorState, which you can use to access all of the values of the Finch sensors. For example, finch?.sensorState?.distance will give you the value of the distance sensor. SensorState is a class that contains the sensor information for the Finch. The variables inside that class that contain the Finch data are described below.
 
-The MainActivity screen demonstrates how you can use buttons and sliders to control the Finch outputs. It also displays the values of the Finch sensors on the screen.
+The MainActivity is blank and ready for your to write your own Finch app!
 
 Public Finch Functions:
 

@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp.Scan
+package com.birdbraintech.android.finchblankapp.Scan
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.birdbraintech.android.finchbasicapp.Finch.NamingHandler
-import com.birdbraintech.android.finchbasicapp.R
+import com.birdbraintech.android.finchblankapp.Finch.NamingHandler
+import com.birdbraintech.android.finchblankapp.R
 import java.util.*
 
 /**

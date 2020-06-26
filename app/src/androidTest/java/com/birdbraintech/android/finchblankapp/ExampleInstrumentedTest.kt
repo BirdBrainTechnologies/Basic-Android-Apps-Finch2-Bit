@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.finchblankapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

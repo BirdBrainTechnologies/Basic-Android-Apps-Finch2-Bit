@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp.Scan
+package com.birdbraintech.android.finchblankapp.Scan
 
 import android.Manifest
 import android.app.Activity
@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.birdbraintech.android.finchbasicapp.*
-import com.birdbraintech.android.finchbasicapp.Finch.FinchApplication
+import com.birdbraintech.android.finchblankapp.*
+import com.birdbraintech.android.finchblankapp.Finch.FinchApplication
 
 /* This is the first activity in the app. It displays a list of Finches. When you click one, it
 connects to the Finch and moves to MainActivity.

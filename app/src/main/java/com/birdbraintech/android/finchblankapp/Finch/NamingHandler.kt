@@ -1,8 +1,8 @@
-package com.birdbraintech.android.finchbasicapp.Finch
+package com.birdbraintech.android.finchblankapp.Finch
 
 
 import android.content.Context
-import com.birdbraintech.android.finchbasicapp.R
+import com.birdbraintech.android.finchblankapp.R
 import java.util.*
 
 /**

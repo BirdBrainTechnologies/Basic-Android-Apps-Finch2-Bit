@@ -214,7 +214,7 @@ class Finch(var finchConnection: UARTConnection): UARTConnection.DataListener, U
         }
     }
 
-    /* This is the sensor data as it comes from the Finch in a 20-byte packet. It has to be
+    /* This is the sensor data as it comes from the Finch in a 20-byte packet. It has to be 
     decoded to provide meaningful information to the user. */
     private var rawInputState: RawInputState? = null
     var sensorState: SensorState? = null

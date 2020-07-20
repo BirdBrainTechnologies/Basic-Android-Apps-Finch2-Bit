@@ -91,8 +91,7 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
 
     /* The next four functions are called when the user taps the buttons to make the Finch move. */
     fun upButtonClicked(view: View) {
-        finch?.calibrateCompass()
-        //finch?.setMove("F",20.0,50)
+        finch?.setMove("F",20.0,50)
     }
 
     fun downButtonClicked(view: View) {
@@ -121,7 +120,7 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
     override fun onData() {
         /* Set the values of the TextViews for the sensors. */
         this.runOnUiThread(java.lang.Runnable({
-            this.distanceNumber.text = finch?.sensorState?.compass.toString()//distance.toString() + " cm"
+            this.distanceNumber.text = finch?.sensorState?.distance.toString() + " cm"
             val lightSensors = finch?.correctLightSensorValues()
             this.lightNumbers.text = "(" + lightSensors?.get(0).toString() + ", " +
                     lightSensors?.get(1).toString() + ")"

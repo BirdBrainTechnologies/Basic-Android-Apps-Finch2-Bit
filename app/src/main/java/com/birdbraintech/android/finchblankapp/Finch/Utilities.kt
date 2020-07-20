@@ -128,7 +128,7 @@ fun DoubleToCompass(acc: Array<Double>, mag: Array<Double>): Int? {
     val yP = my * cos(phi) - mz * sin(phi)
     val zP = my * sin(phi) + mz * sin(phi)
 
-    val xPP = xP * sin(theta) + zP * sin(theta)
+    val xPP = xP * cos(theta) + zP * sin(theta)
     val yPP = yP
 
     val angle = 180 + Math.toDegrees(atan2(xPP, yPP))

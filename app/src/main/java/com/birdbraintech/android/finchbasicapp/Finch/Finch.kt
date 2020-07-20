@@ -88,8 +88,7 @@ class Finch(var finchConnection: UARTConnection): UARTConnection.DataListener, U
                 RawToFinchAccl(
                     rawAcc
                 )
-            //val accValues = [rawToAccelerometer(rawFinchAcc[0]), rawToAccelerometer(rawFinchAcc[1]), rawToAccelerometer(rawFinchAcc[2])]
-
+            
             val rawMag = byteArrayOf(rawStateData[Constants.magX],rawStateData[Constants.magX + 1],rawStateData[Constants.magX + 2])
             val finchMag =
                 RawToFinchMag(

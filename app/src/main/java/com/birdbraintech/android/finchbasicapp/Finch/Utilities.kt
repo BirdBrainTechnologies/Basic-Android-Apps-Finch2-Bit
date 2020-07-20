@@ -1,5 +1,6 @@
 package com.birdbraintech.android.finchbasicapp.Finch
 
+import android.util.Log
 import kotlin.math.*
 
 /* This file contains a lot of small function that are used to process the Finch data or encode
@@ -128,7 +129,7 @@ fun DoubleToCompass(acc: Array<Double>, mag: Array<Double>): Int? {
     val yP = my * cos(phi) - mz * sin(phi)
     val zP = my * sin(phi) + mz * sin(phi)
 
-    val xPP = xP * sin(theta) + zP * sin(theta)
+    val xPP = xP * cos(theta) + zP * sin(theta)
     val yPP = yP
 
     val angle = 180 + Math.toDegrees(atan2(xPP, yPP))
@@ -177,11 +178,11 @@ fun ConstructByteFromInts(data: IntArray, start: Int, end: Int): Byte {
  * @return 2s complement of input
  */
 fun Complement(prev: Int): Int {
-    var prev = prev
-    if (prev > 127) {
-        prev = prev - 256
+    var prevLocal = prev
+    if (prevLocal > 127) {
+        prevLocal = prevLocal - 256
     }
-    return prev
+    return prevLocal
 }
 
 /**

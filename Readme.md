@@ -14,37 +14,37 @@ Method Signature: setLED(port: Int, intensity: Int)
 
 Description: Sets an LED to a given intensity value. The method requires the port number of the LED (1-3) and an intensity value from 0-100. An intensity value of 0 turns the LED off.
 
-Example: myBit.setLED(port: 1, intensity: 100)
+Example: myBit.setLED(1, 100)
 
 Method Signature: setTriLED(port: Int, red: Int, green: Int, blue: Int)
 
 Description: Sets a tri-color LED to a given color by setting the intensities of the red, green, and blue elements inside it . The method requires the port number of the tri-color LED (1-2) and three intensity values from 0-100. Setting all three intensity values to 0 turns the LED off.
 
-Example: myBit.setTriLED(port: 1, red: 75, green: 0, blue: 75)
+Example: myBit.setTriLED(1, 75, 0, 75)
 
 Method Signature: setPositionServo(port: Int, angle: Int)
 
 Description: Sets a position servo to a given angle. The method requires the port number of the servo (1-4) and an angle from 0°-180°.
 
-Example: myBit.setPositionServo(port: 1, angle: 90)
+Example: myBit.setPositionServo(1, 90)
 
 Method Signature: setRotationServo(port: Int, speed: Int)
 
 Description: Sets a rotation servo to spin at a given speed. The method requires the port number of the servo (1-4) and a speed between -100 and 100. A speed of 0 turns the motor off.
 
-Example: myBit.setRotationServo(port: 1, speed: 100)
+Example: myBit.setRotationServo(1, 100)
 
 Method Signature: playNote(note: Int, beats: Double)
 
 Description: Plays a note using the buzzer on the Hummingbird. The method requires an integer representing the note (32-135) and a number giving the number of beats (0-16). The number of beats can be a decimal number.
 
-Example: myBit.playNote(note: 60 beats: 0.5)
+Example: myBit.playNote(60, 0.5)
 
 Method Signature: setDisplay(pattern: Array)
 
 Description: Sets the LED array of the micro:bit to display a pattern defined by an array of length 25. Each value in the list must be 0 (off) or 1 (on). The first five values in the array correspond to the five LEDs in the first row, the next five values to the second row, etc.
 
-Example: myBit.setDisplay(pattern: [1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1])
+Example: myBit.setDisplay([1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1])
 
 Method Signature: printString(_ stringToPrint: String)
 

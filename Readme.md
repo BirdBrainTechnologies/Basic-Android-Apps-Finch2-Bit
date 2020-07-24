@@ -18,19 +18,19 @@ Method Signature: setMove(direction: String, distance: Double, speed: Int)
 
 Description: Moves the Finch forward or backward for a specified distance at a specified speed. The method requires a direction ("F" for forward or "B’" for backward), a distance in centimeters, and a speed from 0-100.
 
-Example: finch.setMove(direction: "F", distance: 10, speed: 50)
+Example: finch.setMove("F", 10, 50)
 
 Method Signature: setTurn(direction: String, angle: Double, speed: Int)
 
 Description: Turns the Finch right or left for a specified angle at a specified speed. The method requires a direction ("R" for right or "L" for left), an angle in degrees, and a speed from 0-100.
 
-Example: finch.setTurn(direction: "R", angle: 90, speed: 50)
+Example: finch.setTurn("R", 90, 50)
 
 Method Signature: setMotors(leftSpeed: Int, rightSpeed: Int)
 
 Description: Sets the Finch wheels to spin at the given speeds. The method requires two speeds between -100 and 100 for the left and right wheels. Setting the speed to 0 turns the motor off.
 
-Example: finch.setMotors(leftSpeed: -50, rightSpeed: 50)
+Example: finch.setMotors(-50, 50)
 
 Method Signature: stop()
 
@@ -42,31 +42,31 @@ Method Signature: setBeak(red: Int, green: Int, blue: Int)
 
 Description: Sets a tri-color LED in the Finch beak to a given color by setting the intensities of the red, green, and blue elements inside it. The method requires three intensity values from 0-100. Setting all three intensity values to 0 turns the beak off.
 
-Example: finch.setBeak(red:0, green: 100, blue: 0)
+Example: finch.setBeak(0, 100, 0)
 
 Method Signature: setTail(port: Int, red: Int, green: Int, blue: Int)
 
 Description: Sets a tri-color LED in the Finch tail to a given color by setting the intensities of the red, green, and blue elements inside it. The method requires the port number of the LED (1-4) and three intensity values from 0-100. Setting all three intensity values to 0 turns the LED off.
 
-Example: finch.setTail(port: 1, red: 0, green: 100, blue: 0)
+Example: finch.setTail(1, 0, 100, 0)
 
 Method Signature: setTail(port: String, red: Int, green: Int, blue: Int)
 
 Description: Sets all the tri-color LEDs in the Finch tail to a given color by setting the intensities of the red, green, and blue elements inside it. The method requires a String equal to “all” and three intensity values from 0-100. Setting all three intensity values to 0 turns the LED off.
 
-Example: finch.setTail(port: "all", red: 0, green: 100, blue: 0)
+Example: finch.setTail("all", 0, 100, 0)
 
 Method Signature: playNote(note: Int, beats: Double)
 
 Description: Plays a note using the buzzer on the Finch. The method requires an integer representing the note (32-135) and a number giving the number of beats (0-16). The number of beats can be a decimal number.
 
-Example: finch.playNote(note: 60 beats: 0.5)
+Example: finch.playNote(60, 0.5)
 
 Method Signature: setDisplay(pattern: Array)
 
 Description: Sets the LED array of the micro:bit to display a pattern defined by an array of length 25. Each value in the list must be 0 (off) or 1 (on). The first five values in the array correspond to the five LEDs in the first row, the next five values to the second row, etc.
 
-Example: finch.setDisplay(pattern: [1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1])
+Example: finch.setDisplay([1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1])
 
 Method Signature: printString(_ stringToPrint: String)
 

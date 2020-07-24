@@ -44,7 +44,7 @@ Method Signature: setDisplay(pattern: Array)
 
 Description: Sets the LED array of the micro:bit to display a pattern defined by an array of length 25. Each value in the list must be 0 (off) or 1 (on). The first five values in the array correspond to the five LEDs in the first row, the next five values to the second row, etc.
 
-Example: myBit.setDisplay([1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1])
+Example: myBit.setDisplay(arrayOf(1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1))
 
 Method Signature: printString(_ stringToPrint: String)
 

@@ -1,17 +1,13 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.hummingbirdbasicapp.Hummingbird
 
 
 import android.content.Context
+import com.birdbraintech.android.hummingbirdbasicapp.R
 import java.util.*
 
 /**
  * Created by Steve on 6/9/2016.
- *
- *
- * NamingHandler
- *
- *
- * A class that handles naming devices.
+ * A class that generates the three word names for Finches and Hummingbirds.
  */
 object NamingHandler {
 

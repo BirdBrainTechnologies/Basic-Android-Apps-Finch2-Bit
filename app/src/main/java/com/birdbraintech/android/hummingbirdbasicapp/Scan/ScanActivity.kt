@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.hummingbirdbasicapp.Scan
 
 import android.Manifest
 import android.app.Activity
@@ -18,8 +18,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.birdbraintech.android.hummingbirdbasicapp.Hummingbird.HummingbirdApplication
+import com.birdbraintech.android.hummingbirdbasicapp.MainActivity
+import com.birdbraintech.android.hummingbirdbasicapp.R
 
-class ScanActivity : AppCompatActivity(), ScanItemFragment.OnListFragmentInteractionListener {
+/* This is the first activity in the app. It displays a list of Hummingbirds. When you click one, it
+connects to the Hummingbird and moves to MainActivity.
+ */
+class ScanActivity : AppCompatActivity(),
+    ScanItemFragment.OnListFragmentInteractionListener {
 
     private lateinit var bluetoothAdapter: BluetoothAdapter
     private var scanListAdapter: ScanViewAdapter? = null
@@ -43,13 +50,15 @@ class ScanActivity : AppCompatActivity(), ScanItemFragment.OnListFragmentInterac
         bluetoothAdapter.bluetoothLeScanner.startScan(scanCallback)
     }
 
-
-    private fun onClickScan() {
+    /* This function makes sure you have permission for Bluetooth and starts the scan. */
+    private fun onScan() {
         // Ensures Bluetooth is available on the device and it is enabled. If not,
         // displays a dialog requesting user permission to enable Bluetooth.
         if (!bluetoothAdapter.isEnabled) {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+            startActivityForResult(enableBtIntent,
+                REQUEST_ENABLE_BT
+            )
         } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Log.i("Bluetooth", "Don't have permission to do bluetooth scan.")
 
@@ -57,7 +66,9 @@ class ScanActivity : AppCompatActivity(), ScanItemFragment.OnListFragmentInterac
                     .setMessage("This app needs location permissions to scan for nearby Bluetooth devices.")
                     .setPositiveButton("OK") { _, _ ->
                         // The previous permission check should only be able to fail on M or higher
-                        requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_REQUEST_COARSE_LOCATION)
+                        requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                            PERMISSION_REQUEST_COARSE_LOCATION
+                        )
                     }
                     .show()
         } else {
@@ -80,7 +91,7 @@ class ScanActivity : AppCompatActivity(), ScanItemFragment.OnListFragmentInterac
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.d("Bluetooth", "onActivityResult: $requestCode, $resultCode")
         if (resultCode == Activity.RESULT_OK) {
-            onClickScan()
+            onScan()
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -102,13 +113,16 @@ class ScanActivity : AppCompatActivity(), ScanItemFragment.OnListFragmentInterac
 
 
         scanListAdapter!!.clearList()
-        onClickScan()
+        onScan()
     }
 
 
+    /* This is the function that is called when you tap on an item in the list. It connects to
+    the Hummingbird and starts MainActivity
+     */
     override fun onListFragmentInteraction(item: BluetoothDevice) {
         Thread {
-            (application as FinchApplication).startFinchConnection(item)
+            (application as HummingbirdApplication).startHummingbirdConnection(item)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }.start()

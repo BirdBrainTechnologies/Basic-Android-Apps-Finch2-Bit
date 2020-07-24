@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.hummingbirdbasicapp.Scan
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.birdbraintech.android.hummingbirdbasicapp.Hummingbird.NamingHandler
+import com.birdbraintech.android.hummingbirdbasicapp.R
 import java.util.*
 
 /**
+ * This is the view adapter for the table of Bluetooth devices that is displayed when the app opens.
  * [RecyclerView.Adapter] that can display a [BluetoothDevice] and makes a call to the
  * specified [OnListFragmentInteractionListener].
  */
@@ -78,8 +81,8 @@ class ScanViewAdapter(private val appContext: Context, private val listener: Sca
 
 
     fun addToList(device: BluetoothDevice, strength: Int) {
-        val prefix = "FN" //BuildConfig.HARDWARE.devicePrefix
-        if ((device.name?.startsWith("FN") == true) || (device.name?.startsWith("BB") == true)){
+        val prefix = "BB" //BuildConfig.HARDWARE.devicePrefix
+        if ((device.name?.startsWith("BB") == true)){
 
             var oldStrength = strength;
             var deviceFound = false

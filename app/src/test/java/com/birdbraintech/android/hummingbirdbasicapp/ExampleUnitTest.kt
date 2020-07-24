@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.hummingbirdbasicapp
 
 import org.junit.Test
 

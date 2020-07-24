@@ -1,10 +1,8 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.hummingbirdbasicapp.Hummingbird
 
 import kotlin.math.*
 
 /* This file contains a lot of small function that are used to process the Finch data or encode values into the form that the Bluetooth protocol requires. You should not need to change anything in this file, though you can add your own utilities if you wish. */
-
-
 
 
 /* This function is used to make sure Finch output values are within the required bound.*/
@@ -24,9 +22,21 @@ fun clampToBounds(num: Double, minBound: Double, maxBound: Double): Double {
  * @return the acceleration in a specific axis based on the raw value.
  */
 fun RawToAccl(rawAccl: ByteArray): Array<Double> {
-    val x = Complement(RawToInt(rawAccl[0])) * 196.0 / 1280.0
-    val y = Complement(RawToInt(rawAccl[1])) * 196.0 / 1280.0
-    val z = Complement(RawToInt(rawAccl[2])) * 196.0 / 1280.0
+    val x = Complement(
+        RawToInt(
+            rawAccl[0]
+        )
+    ) * 196.0 / 1280.0
+    val y = Complement(
+        RawToInt(
+            rawAccl[1]
+        )
+    ) * 196.0 / 1280.0
+    val z = Complement(
+        RawToInt(
+            rawAccl[2]
+        )
+    ) * 196.0 / 1280.0
 
     return arrayOf(x, y, z)
 }
@@ -39,9 +49,21 @@ fun RawToAccl(rawAccl: ByteArray): Array<Double> {
  * @return the acceleration in a specific axis based on the raw value.
  */
 fun RawToFinchAccl(rawAccl: ByteArray): Array<Double> {
-    val x = Complement(RawToInt(rawAccl[0])).toDouble()
-    val y = Complement(RawToInt(rawAccl[1])).toDouble()
-    val z = Complement(RawToInt(rawAccl[2])).toDouble()
+    val x = Complement(
+        RawToInt(
+            rawAccl[0]
+        )
+    ).toDouble()
+    val y = Complement(
+        RawToInt(
+            rawAccl[1]
+        )
+    ).toDouble()
+    val z = Complement(
+        RawToInt(
+            rawAccl[2]
+        )
+    ).toDouble()
 
     var yConverted = y * cos(Math.toRadians(40.0)) - z * sin(Math.toRadians(40.0))
     var zConverted = y * sin(Math.toRadians(40.0)) + z * cos(Math.toRadians(40.0))
@@ -60,11 +82,11 @@ fun RawToFinchAccl(rawAccl: ByteArray): Array<Double> {
  * @return the magnetometer value in a specific axis based on the raw value.
  */
 fun RawToMag(rawMag: ByteArray): Array<Double>  {
-    val mx = (rawMag[1].toInt() and 0xFF or (rawMag[0].toInt() shl 8)).toDouble()
-    val my = (rawMag[3].toInt() and 0xFF or (rawMag[2].toInt() shl 8)).toDouble()
-    val mz = (rawMag[5].toInt() and 0xFF or (rawMag[4].toInt() shl 8)).toDouble()
+    val mx =((rawMag[1].toInt() and 0xFF) or (rawMag[0].toInt() shl 8)).toDouble()
+    val my = ((rawMag[3].toInt() and 0xFF) or (rawMag[2].toInt() shl 8)).toDouble()
+    val mz = ((rawMag[5].toInt() and 0xFF) or (rawMag[4].toInt() shl 8)).toDouble()
 
-    return arrayOf(mx, my, mz)
+    return arrayOf(mx/10.0, my/10.0, mz/10.0)
 }
 
 /**
@@ -75,9 +97,15 @@ fun RawToMag(rawMag: ByteArray): Array<Double>  {
  * @return the magnetometer value in a specific axis based on the raw value.
  */
 fun RawToFinchMag(rawMag: ByteArray): Array<Double> {
-    val x = Complement(RawToInt(rawMag[0])).toDouble()
-    val y: Double = Complement(RawToInt(rawMag[1])).toDouble()
-    val z: Double = Complement(RawToInt(rawMag[2])).toDouble()
+    val x = Complement(
+        RawToInt(rawMag[0])
+    ).toDouble()
+    val y: Double = Complement(
+        RawToInt(rawMag[1])
+    ).toDouble()
+    val z: Double = Complement(
+        RawToInt(rawMag[2])
+    ).toDouble()
     val yConverted = y * cos(Math.toRadians(40.0)) + z * sin(Math.toRadians(40.0))
     val zConverted = z * cos(Math.toRadians(40.0)) - y * sin(Math.toRadians(40.0))
 
@@ -111,7 +139,7 @@ fun DoubleToCompass(acc: Array<Double>, mag: Array<Double>): Int? {
     val yP = my * cos(phi) - mz * sin(phi)
     val zP = my * sin(phi) + mz * sin(phi)
 
-    val xPP = xP * sin(theta) + zP * sin(theta)
+    val xPP = xP * cos(theta) + zP * sin(theta)
     val yPP = yP
 
     val angle = 180 + Math.toDegrees(atan2(xPP, yPP))
@@ -145,6 +173,7 @@ fun convertVelocity(velocity: Int): Byte {
 }
 
 
+/* This function is used to set up the commands to control the LED display on the micro:bit. */
 fun ConstructByteFromInts(data: IntArray, start: Int, end: Int): Byte {
     var resultByte = 0
     for (i in start until end) {
@@ -152,18 +181,7 @@ fun ConstructByteFromInts(data: IntArray, start: Int, end: Int): Byte {
     }
     return resultByte.toByte()
 }
-/**
-Gets the unicode value for a character
- */
-//public func getUnicode(_ char: Character) -> UInt8{
-//    let scalars = String(char).unicodeScalars
-//    var val = scalars[scalars.startIndex].value
-//    if val > 255 {
-//        NSLog("Unicode for character \(char) not supported.")
-//        val = 254
-//    }
-//    return UInt8(val)
-//}
+
 
 /**
  * Take 2s complement of a given int

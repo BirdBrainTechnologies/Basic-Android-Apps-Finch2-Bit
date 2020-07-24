@@ -10,5 +10,5 @@
     android:layout_marginRight="16dp"
     android:background="#fff"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    tools:context=".ScanItemFragment"
+    tools:context=".Scan.ScanItemFragment"
     tools:listitem="@layout/fragment_scan_item" />

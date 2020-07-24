@@ -1,4 +1,4 @@
-package com.birdbraintech.android.finchbasicapp
+package com.birdbraintech.android.finchbasicapp.Scan
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.birdbraintech.android.finchbasicapp.Finch.NamingHandler
+import com.birdbraintech.android.finchbasicapp.R
 import java.util.*
 
 /**
+ * This is the view adapter for the table of Bluetooth devices that is displayed when the app opens.
  * [RecyclerView.Adapter] that can display a [BluetoothDevice] and makes a call to the
  * specified [OnListFragmentInteractionListener].
  */
@@ -55,7 +58,11 @@ class ScanViewAdapter(private val appContext: Context, private val listener: Sca
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = values[position].first
-        holder.idView.text = NamingHandler.generateName(appContext, holder.item!!.address)
+        holder.idView.text =
+            NamingHandler.generateName(
+                appContext,
+                holder.item!!.address
+            )
         holder.itemView.isSelected = selectedPosition == position
         holder.view.setOnClickListener {
             if (null != listener) {
@@ -79,7 +86,7 @@ class ScanViewAdapter(private val appContext: Context, private val listener: Sca
 
     fun addToList(device: BluetoothDevice, strength: Int) {
         val prefix = "FN" //BuildConfig.HARDWARE.devicePrefix
-        if ((device.name?.startsWith("FN") == true) || (device.name?.startsWith("BB") == true)){
+        if ((device.name?.startsWith("FN") == true)){
 
             var oldStrength = strength;
             var deviceFound = false

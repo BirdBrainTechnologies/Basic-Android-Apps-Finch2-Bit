@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), Finch.FinchListener {
     }
 
     /* This is the function that is called when the Finch has new sensor data. That data is in
-    the inputState variable. */
+    the sensorState variable. */
     override fun onData() {
         /* Set the values of the TextViews for the sensors. */
         this.runOnUiThread(java.lang.Runnable({

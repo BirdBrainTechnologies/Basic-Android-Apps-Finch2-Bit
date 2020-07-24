@@ -86,7 +86,7 @@ class ScanViewAdapter(private val appContext: Context, private val listener: Sca
 
     fun addToList(device: BluetoothDevice, strength: Int) {
         val prefix = "FN" //BuildConfig.HARDWARE.devicePrefix
-        if ((device.name?.startsWith("FN") == true) || (device.name?.startsWith("BB") == true)){
+        if ((device.name?.startsWith("FN") == true)){
 
             var oldStrength = strength;
             var deviceFound = false
